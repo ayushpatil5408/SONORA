@@ -1,0 +1,204 @@
+/* ==========================================================================
+   SONORA Design Tokens
+   Authoritative Reference: DESIGN_SYSTEM.md & VISUAL_LANGUAGE.md
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Color Palette: The Pure Void & Spectral Harmonic Accents
+     ------------------------------------------------------------------------ */
+  /* Stage Canvas */
+  --color-void: #000000;
+  --color-surface-base: #08080a;
+  --color-surface-elevated: #111116;
+  --color-surface-border: rgba(255, 255, 255, 0.08);
+  --color-surface-border-active: rgba(255, 255, 255, 0.24);
+
+  /* Typographic Contrast */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #909096;
+  --color-text-tertiary: #52525a;
+
+  /* Spectral Frequency & Harmonic Accents */
+  --color-accent-iris: #7c4dff;
+  --color-accent-cyan: #00e5ff;
+  --color-accent-amber: #ffb300;
+  --color-accent-crimson: #ff1744;
+
+  /* Focus & Interactive States */
+  --color-focus-ring: rgba(124, 77, 255, 0.7);
+  --color-focus-ring-offset: #000000;
+
+  /* ------------------------------------------------------------------------
+     2. Typography: Robust System Stacks (Replaceable Semantic Variables)
+     ------------------------------------------------------------------------ */
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Typographic Scale */
+  --text-xs: 0.6875rem;   /* 11px */
+  --text-sm: 0.8125rem;   /* 13px */
+  --text-base: 0.9375rem; /* 15px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 2rem;       /* 32px */
+  --text-display: 3rem;   /* 48px */
+
+  /* Leading */
+  --leading-none: 1;
+  --leading-tight: 1.15;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.6;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+
+  /* ------------------------------------------------------------------------
+     3. Spacing Scale (4px baseline)
+     ------------------------------------------------------------------------ */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+
+  /* ------------------------------------------------------------------------
+     4. Geometry & Radii
+     ------------------------------------------------------------------------ */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     5. Dimensionality & Z-Index Planes
+     ------------------------------------------------------------------------ */
+  --z-void: 0;
+  --z-atmosphere: 1;
+  --z-field: 5;
+  --z-stage: 10;
+  --z-controls: 20;
+  --z-floating: 50;
+  --z-nav: 60;
+  --z-dock: 70;
+  --z-overlay: 100;
+
+  /* ------------------------------------------------------------------------
+     6. Motion & Physics
+     ------------------------------------------------------------------------ */
+  --motion-duration-fast: 120ms;
+  --motion-duration-normal: 240ms;
+  --motion-duration-slow: 480ms;
+  --motion-duration-pulse: 3600ms;
+  --motion-duration-drift: 24000ms;
+  --motion-duration-orbit: 48000ms;
+  --motion-duration-ambient: 24000ms;
+
+  --motion-ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ------------------------------------------------------------------------
+     7. Spatial Lighting, Bloom & Sound Object Primitives
+     ------------------------------------------------------------------------ */
+  --glow-iris: rgba(124, 77, 255, 0.35);
+  --glow-iris-intense: rgba(124, 77, 255, 0.65);
+  --glow-cyan: rgba(0, 229, 255, 0.35);
+  --glow-cyan-intense: rgba(0, 229, 255, 0.7);
+  --glow-amber: rgba(255, 179, 0, 0.35);
+  --glow-amber-intense: rgba(255, 179, 0, 0.7);
+
+  --surface-glass-subtle: rgba(12, 12, 18, 0.65);
+  --surface-glass-elevated: rgba(18, 18, 26, 0.85);
+  --border-luminous: rgba(255, 255, 255, 0.14);
+  --border-faint: rgba(255, 255, 255, 0.05);
+
+  --sound-orb-size: 160px;
+  --sound-orb-scale-idle: 1.0;
+  --sound-orb-scale-active: 1.08;
+
+  /* ------------------------------------------------------------------------
+     8. Spatial Depth Horizons, Kinetic & Route Transitions
+     ------------------------------------------------------------------------ */
+  --bloom-spread-idle: 180px;
+  --bloom-spread-active: 280px;
+  --transient-spark: rgba(255, 255, 255, 0.95);
+  --spectral-stardust: rgba(0, 229, 255, 0.7);
+  --motion-ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --route-transition-duration: 260ms;
+  --route-transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ------------------------------------------------------------------------
+     9. Console Surfaces & Tactile Material Hardware
+     ------------------------------------------------------------------------ */
+  --surface-console: rgba(9, 9, 14, 0.82);
+  --surface-console-solid: #0d0d14;
+  --surface-console-border: rgba(255, 255, 255, 0.12);
+  --surface-console-highlight: rgba(255, 255, 255, 0.2);
+  --color-accent-violet: #651fff;
+  --color-accent-emerald: #00e676;
+
+  /* ------------------------------------------------------------------------
+     10. Aurora & Chromatic / Holographic Visual System (Visual Transformation)
+     ------------------------------------------------------------------------ */
+  /* Environmental Void Foundations */
+  --void-deep: #020205;
+  --void-navy: #04040c;
+  --void-violet: #070512;
+  --void-indigo: #050616;
+
+  /* Spectral Color Hierarchy */
+  --aurora-cyan: #00f5ff;
+  --aurora-blue: #2563eb;
+  --aurora-indigo: #4338ca;
+  --aurora-violet: #8b5cf6;
+  --aurora-magenta: #ec4899;
+  --aurora-pink: #f43f5e;
+  --aurora-emerald: #10b981;
+  --aurora-teal: #14b8a6;
+  --aurora-amber: #f59e0b;
+  --aurora-orange: #f97316;
+  --aurora-crimson: #ef4444;
+
+  /* Multi-Stop Chromatic Gradients (Prismatic Diffraction) */
+  --gradient-aurora-spectral: linear-gradient(135deg, #00f5ff 0%, #3b82f6 25%, #8b5cf6 50%, #ec4899 75%, #f59e0b 100%);
+  --gradient-aurora-cool: linear-gradient(135deg, #00f5ff 0%, #38bdf8 30%, #3b82f6 60%, #8b5cf6 100%);
+  --gradient-aurora-warm: linear-gradient(135deg, #f43f5e 0%, #f97316 35%, #f59e0b 70%, #ec4899 100%);
+  --gradient-aurora-cosmic: linear-gradient(135deg, #10b981 0%, #00f5ff 30%, #8b5cf6 65%, #f43f5e 100%);
+  --gradient-aurora-borealis: linear-gradient(180deg, rgba(0, 245, 255, 0.15) 0%, rgba(139, 92, 246, 0.12) 35%, rgba(236, 72, 153, 0.08) 70%, transparent 100%);
+  --gradient-aurora-ambient: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.2) 0%, rgba(0, 245, 255, 0.1) 35%, rgba(7, 5, 18, 0.95) 80%, var(--void-deep) 100%);
+
+  /* Holographic Optical Surfaces (Holo-Glass) */
+  --holo-surface: rgba(8, 8, 18, 0.72);
+  --holo-surface-elevated: rgba(12, 12, 28, 0.82);
+  --holo-surface-active: rgba(18, 18, 40, 0.94);
+  --holo-surface-subtle: rgba(255, 255, 255, 0.035);
+  
+  /* Holographic Chromatic Borders */
+  --holo-border: rgba(255, 255, 255, 0.1);
+  --holo-border-hover: rgba(255, 255, 255, 0.28);
+  --holo-border-active: rgba(0, 245, 255, 0.65);
+  --holo-border-chromatic: linear-gradient(135deg, rgba(0, 245, 255, 0.7) 0%, rgba(139, 92, 246, 0.6) 40%, rgba(236, 72, 153, 0.7) 75%, rgba(245, 158, 11, 0.6) 100%);
+  --holo-border-cool: linear-gradient(135deg, rgba(0, 245, 255, 0.85) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(139, 92, 246, 0.75) 100%);
+  --holo-border-warm: linear-gradient(135deg, rgba(245, 158, 11, 0.85) 0%, rgba(249, 115, 22, 0.7) 50%, rgba(236, 72, 153, 0.75) 100%);
+
+  /* Prismatic Glow & Spectral Highlights */
+  --holo-glow-cyan: 0 0 28px rgba(0, 245, 255, 0.4), inset 0 0 16px rgba(0, 245, 255, 0.15);
+  --holo-glow-violet: 0 0 32px rgba(139, 92, 246, 0.4), inset 0 0 18px rgba(139, 92, 246, 0.16);
+  --holo-glow-amber: 0 0 28px rgba(245, 158, 11, 0.4), inset 0 0 16px rgba(245, 158, 11, 0.15);
+  --holo-glow-spectrum: 0 0 36px rgba(139, 92, 246, 0.3), 0 0 16px rgba(0, 245, 255, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+
+  /* Optical Glass Refraction & Shimmer */
+  --holo-reflection: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 40%, transparent 100%);
+  --holo-glass-card: rgba(8, 8, 18, 0.7);
+  --holo-blur-base: blur(18px);
+  --holo-blur-elevated: blur(32px);
+}
+
+

@@ -1,0 +1,144 @@
+/**
+ * SONORA DJ Environment Selector Styles
+ * Authoritative Reference: PRD.md, DESIGN_SYSTEM.md & Milestone 3
+ */
+
+.sonora-env-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto var(--space-4);
+  padding: 10px var(--space-4);
+  background: rgba(10, 10, 18, 0.45);
+  border: 1px solid var(--border-faint);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 10;
+  transition: all var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+.sonora-env-selector-container:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sonora-env-selector-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sonora-env-selector-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+.sonora-env-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+  transition: background var(--motion-duration-fast) ease-out;
+}
+
+.sonora-env-active-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.sonora-env-selector-pill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--border-subtle);
+  padding: 3px;
+  border-radius: var(--radius-full);
+}
+
+.sonora-env-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+  outline: none;
+}
+
+.sonora-env-option-btn:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sonora-env-option-btn:focus-visible {
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.35);
+}
+
+.sonora-env-option-btn.is-active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+.sonora-env-option-btn.is-active.is-orbital {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.sonora-env-option-btn.is-active.is-liquid {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.sonora-env-option-btn.is-active.is-organism {
+  border-color: rgba(192, 132, 252, 0.4);
+  box-shadow: 0 0 12px rgba(192, 132, 252, 0.2);
+}
+
+.sonora-env-glyph {
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .sonora-env-selector-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .sonora-env-selector-pill {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sonora-env-option-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 6px 8px;
+    font-size: 0.58rem;
+  }
+}

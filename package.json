@@ -1,0 +1,41 @@
+{
+  "name": "sonora",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "test:audio": "node scripts/test-audio.mjs",
+    "test:waveform": "node scripts/test-waveform.mjs",
+    "test:workspace": "node scripts/test-workspace.mjs",
+    "test:shell": "node scripts/test-shell.mjs",
+    "test:catalog": "node scripts/test-catalog.mjs",
+    "test:music-supply": "node scripts/test-music-supply.mjs",
+    "test:jamendo": "node scripts/test-jamendo.mjs",
+    "test:dj-environments": "node scripts/test-dj-environments.mjs",
+    "test:dj-performance": "node scripts/test-dj-performance.mjs",
+    "test:audio-output": "node scripts/test-audio-output.mjs",
+    "test:intelligence": "node scripts/test-audio-intelligence.mjs",
+    "test:creation": "node scripts/test-creation.mjs",
+    "test:creation-editing": "node scripts/test-creation-editing.mjs",
+    "test:arrangement": "node scripts/test-arrangement-intelligence.mjs",
+    "test:warping": "node scripts/test-warping.mjs",
+    "test:rendering": "node scripts/test-rendering.mjs",
+    "test": "node scripts/test-audio.mjs && node scripts/test-waveform.mjs && node scripts/test-workspace.mjs && node scripts/test-shell.mjs && node scripts/test-catalog.mjs && node scripts/test-music-supply.mjs && node scripts/test-jamendo.mjs && node scripts/test-dj-environments.mjs && node scripts/test-audio-output.mjs && node scripts/test-dj-performance.mjs && node scripts/test-audio-intelligence.mjs && node scripts/test-creation.mjs && node scripts/test-creation-editing.mjs && node scripts/test-arrangement-intelligence.mjs && node scripts/test-warping.mjs && node scripts/test-rendering.mjs",
+    "test:all": "node scripts/test-audio.mjs && node scripts/test-waveform.mjs && node scripts/test-workspace.mjs && node scripts/test-shell.mjs && node scripts/test-catalog.mjs && node scripts/test-music-supply.mjs && node scripts/test-jamendo.mjs && node scripts/test-dj-environments.mjs && node scripts/test-audio-output.mjs && node scripts/test-dj-performance.mjs && node scripts/test-audio-intelligence.mjs && node scripts/test-creation.mjs && node scripts/test-creation-editing.mjs && node scripts/test-arrangement-intelligence.mjs && node scripts/test-warping.mjs && node scripts/test-rendering.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}

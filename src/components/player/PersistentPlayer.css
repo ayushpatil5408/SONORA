@@ -1,0 +1,479 @@
+/* ==========================================================================
+   SONORA Persistent Control Surface Dock Styles
+   Authoritative Reference: PRD.md Section 10/13 & DESIGN_SYSTEM.md
+   ========================================================================== */
+
+.sonora-persistent-player {
+  position: fixed;
+  bottom: var(--space-4);
+  left: var(--space-8);
+  right: var(--space-8);
+  height: 74px;
+  background: linear-gradient(135deg, rgba(8, 8, 20, 0.8) 0%, rgba(14, 12, 28, 0.85) 100%);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  z-index: var(--z-dock);
+  box-shadow:
+    0 14px 44px rgba(0, 0, 0, 0.85),
+    0 0 30px rgba(0, 245, 255, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  user-select: none;
+  transition: all var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+.sonora-persistent-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 30%, rgba(0, 245, 255, 0.6) 50%, rgba(139, 92, 246, 0.6) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.sonora-persistent-player.is-playing {
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow:
+    0 14px 48px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(139, 92, 246, 0.3),
+    0 0 18px rgba(0, 245, 255, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+.sonora-persistent-player.is-deck-a.is-playing {
+  border-color: rgba(0, 245, 255, 0.65);
+  box-shadow:
+    0 14px 48px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(0, 245, 255, 0.38),
+    0 0 18px rgba(59, 130, 246, 0.3),
+    inset 0 1px 2px rgba(0, 245, 255, 0.4);
+}
+
+.sonora-persistent-player.is-deck-b.is-playing {
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow:
+    0 14px 48px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(245, 158, 11, 0.38),
+    0 0 18px rgba(236, 72, 153, 0.3),
+    inset 0 1px 2px rgba(245, 158, 11, 0.4);
+}
+
+/* 1. Track Info Section (Left) */
+.sonora-player-track-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 220px;
+  max-width: 320px;
+}
+
+.sonora-player-mini-disc {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #1b1b26 15%, transparent 16%),
+    repeating-radial-gradient(circle at center, #090910 0, #090910 2px, #161622 3px, #161622 4px),
+    conic-gradient(from 0deg, rgba(0, 229, 255, 0.15), rgba(124, 77, 255, 0.15), rgba(224, 64, 251, 0.15), rgba(0, 229, 255, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.85);
+  position: relative;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-player-mini-disc.is-rotating {
+  animation: sonora-disc-spin 3.2s linear infinite;
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.35);
+}
+
+.sonora-persistent-player.is-deck-a .sonora-player-mini-disc.is-rotating {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.sonora-persistent-player.is-deck-b .sonora-player-mini-disc.is-rotating {
+  box-shadow: 0 0 20px rgba(255, 179, 0, 0.4);
+}
+
+@keyframes sonora-disc-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonora-player-mini-disc.is-rotating {
+    animation: none;
+  }
+}
+
+.sonora-player-mini-spindle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--aurora-cyan) 50%, var(--aurora-violet) 100%);
+  box-shadow: 0 0 10px var(--aurora-cyan);
+  border: 2px solid #000000;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-player-mini-spindle.is-deck-a {
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--aurora-cyan) 60%, var(--aurora-blue) 100%);
+  box-shadow: 0 0 12px var(--aurora-cyan);
+}
+
+.sonora-player-mini-spindle.is-deck-b {
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--aurora-amber) 60%, var(--aurora-orange) 100%);
+  box-shadow: 0 0 12px var(--aurora-amber);
+}
+
+.sonora-player-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.sonora-player-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sonora-player-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sonora-player-deck-badge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+}
+
+.sonora-player-deck-badge.is-deck-a {
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--color-accent-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.sonora-player-deck-badge.is-deck-b {
+  background: rgba(255, 179, 0, 0.15);
+  color: var(--color-accent-amber);
+  border: 1px solid rgba(255, 179, 0, 0.35);
+  box-shadow: 0 0 8px rgba(255, 179, 0, 0.2);
+}
+
+.sonora-player-artist {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Real-Time Acoustic Activity Indicator */
+.sonora-player-meter {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  padding: 0 4px;
+}
+
+.sonora-meter-bar {
+  width: 3px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 1px;
+  height: 3px;
+  transition: height 80ms ease, background 120ms ease;
+}
+
+.sonora-player-meter.is-active .sonora-meter-bar {
+  background: var(--color-accent-cyan);
+  box-shadow: 0 0 6px var(--color-accent-cyan);
+}
+
+.sonora-persistent-player.is-deck-b .sonora-player-meter.is-active .sonora-meter-bar {
+  background: var(--color-accent-amber);
+  box-shadow: 0 0 6px var(--color-accent-amber);
+}
+
+.sonora-player-meter.is-active .bar-1 { animation: sonora-meter-jump-1 0.38s ease-in-out infinite alternate; }
+.sonora-player-meter.is-active .bar-2 { animation: sonora-meter-jump-2 0.28s ease-in-out infinite alternate 0.08s; }
+.sonora-player-meter.is-active .bar-3 { animation: sonora-meter-jump-3 0.44s ease-in-out infinite alternate 0.04s; }
+.sonora-player-meter.is-active .bar-4 { animation: sonora-meter-jump-4 0.32s ease-in-out infinite alternate 0.12s; }
+
+@keyframes sonora-meter-jump-1 { from { height: 4px; } to { height: 13px; } }
+@keyframes sonora-meter-jump-2 { from { height: 3px; } to { height: 11px; } }
+@keyframes sonora-meter-jump-3 { from { height: 5px; } to { height: 14px; } }
+@keyframes sonora-meter-jump-4 { from { height: 2px; } to { height: 9px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sonora-meter-bar {
+    animation: none !important;
+  }
+}
+
+.sonora-player-volume-readout {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  min-width: 28px;
+  text-align: right;
+}
+
+
+/* 2. Core Transport & Progress Ribbon (Center) */
+.sonora-player-transport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  max-width: 520px;
+  padding: 0 var(--space-4);
+}
+
+.sonora-player-controls-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sonora-player-play-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-spring);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.sonora-player-play-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(0, 229, 255, 0.35) 100%);
+  border-color: rgba(0, 229, 255, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.sonora-player-play-btn:focus-visible {
+  outline: 2px solid var(--aurora-cyan);
+  outline-offset: 2px;
+}
+
+.sonora-player-play-btn.is-active {
+  background: linear-gradient(135deg, var(--aurora-cyan) 0%, var(--aurora-violet) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 
+    0 0 20px rgba(0, 229, 255, 0.6),
+    0 0 35px rgba(124, 77, 255, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.sonora-player-progress-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sonora-player-timecode {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  min-width: 32px;
+}
+
+.sonora-player-progress-bar {
+  flex: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  position: relative;
+  cursor: pointer;
+  transition: height var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-player-progress-bar:hover {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sonora-player-progress-fill {
+  height: 100%;
+  background: var(--gradient-aurora-spectral);
+  border-radius: var(--radius-full);
+  transition: width 200ms linear;
+  box-shadow: 0 0 12px var(--aurora-cyan);
+  position: relative;
+}
+
+.sonora-persistent-player.is-deck-b .sonora-player-progress-fill {
+  background: var(--gradient-aurora-warm);
+  box-shadow: 0 0 12px var(--aurora-amber);
+}
+
+.sonora-player-playhead-dot {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 
+    0 0 10px #ffffff,
+    0 0 18px var(--aurora-cyan),
+    0 0 28px rgba(124, 77, 255, 0.8);
+  pointer-events: none;
+}
+
+.sonora-persistent-player.is-deck-b .sonora-player-playhead-dot {
+  box-shadow: 
+    0 0 10px #ffffff,
+    0 0 18px var(--aurora-amber),
+    0 0 28px rgba(224, 64, 251, 0.8);
+}
+
+/* 3. Output Stage & Quick Navigation (Right) */
+.sonora-player-output {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 240px;
+  justify-content: flex-end;
+}
+
+.sonora-player-queue-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-faint);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.sonora-player-volume-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 110px;
+}
+
+.sonora-fader-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+
+.sonora-fader-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-fader-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 12px var(--color-accent-iris);
+}
+
+.sonora-player-dj-shortcut-btn {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(124, 77, 255, 0.14);
+  border: 1px solid rgba(124, 77, 255, 0.35);
+  color: #d1c4e9;
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+  white-space: nowrap;
+}
+
+.sonora-player-dj-shortcut-btn:hover {
+  background: var(--color-accent-iris);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(124, 77, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.sonora-player-dj-shortcut-btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .sonora-persistent-player {
+    left: var(--space-3);
+    right: var(--space-3);
+    bottom: var(--space-2);
+    padding: 0 var(--space-3);
+  }
+
+  .sonora-player-output {
+    min-width: auto;
+  }
+
+  .sonora-player-queue-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .sonora-player-output {
+    display: none;
+  }
+}

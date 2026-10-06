@@ -1,0 +1,1566 @@
+/**
+ * SONORA Creator Workspace Styles
+ * Authoritative Reference: PRD.md Section 35, DESIGN_SYSTEM.md, Milestone 5.0 & 5.1
+ * 
+ * Visual Theme: Music as Matter — Spatial Sonic Horizon, Tactile Clip Ribbons,
+ * and Iridescent Transport Beacons.
+ */
+
+.creator-workspace {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: var(--color-text-primary, #ffffff);
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+}
+
+/* 1. Header Zone */
+.creator-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+  background: rgba(8, 8, 18, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl, 16px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.creator-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.creator-project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border-radius: var(--radius-full, 9999px);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12) 0%, rgba(124, 77, 255, 0.18) 100%);
+  color: var(--aurora-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.creator-project-title-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 2px 4px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast, 150ms);
+}
+
+.creator-project-title-input:focus {
+  border-color: var(--aurora-cyan);
+}
+
+.creator-header-center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.creator-transport-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full, 9999px);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-transport-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.creator-transport-btn.is-playing {
+  background: linear-gradient(135deg, var(--aurora-emerald) 0%, var(--aurora-teal) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.6);
+}
+
+.creator-time-readout {
+  font-family: var(--font-mono, monospace);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--aurora-cyan);
+  background: rgba(0, 229, 255, 0.08);
+  padding: 6px 16px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  letter-spacing: 0.05em;
+  min-width: 100px;
+  text-align: center;
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.18);
+}
+
+.creator-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.creator-meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md, 8px);
+}
+
+.creator-tempo-input {
+  width: 48px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+}
+
+.creator-tempo-input:focus {
+  border-color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-snap-group {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.creator-snap-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary, #94a3b8);
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-snap-btn.is-active {
+  background: var(--color-accent-iris, #a78bfa);
+  color: #000;
+}
+
+/* 2. Timeline Horizon Canvas */
+.creator-timeline-stage {
+  position: relative;
+  background: rgba(10, 8, 18, 0.92);
+  border: 1px solid rgba(138, 92, 246, 0.25);
+  border-radius: var(--radius-xl, 16px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.creator-timeline-ruler {
+  position: relative;
+  height: 36px;
+  background: rgba(20, 16, 36, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  user-select: none;
+  cursor: pointer;
+}
+
+.creator-ruler-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-text-secondary, #94a3b8);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+}
+
+.creator-ruler-tick.is-bar {
+  border-left: 2px solid var(--color-accent-iris, #a78bfa);
+  color: var(--color-accent-iris, #a78bfa);
+  font-weight: 700;
+}
+
+.creator-marker-flag {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
+  background: var(--color-accent-amber, #f59e0b);
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+  z-index: 10;
+}
+
+/* 3. Track Lanes */
+.creator-tracks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.creator-track-row {
+  display: flex;
+  min-height: 96px;
+  background: rgba(14, 11, 24, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+}
+
+.creator-track-header {
+  flex-shrink: 0;
+  width: 220px;
+  padding: var(--space-3, 12px);
+  background: rgba(18, 14, 32, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.creator-track-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.creator-track-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.creator-track-controls-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.creator-track-btn {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-text-secondary, #94a3b8);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-track-btn.is-active {
+  background: var(--color-accent-rose, #f43f5e);
+  color: #fff;
+  border-color: var(--color-accent-rose, #f43f5e);
+}
+
+.creator-track-fader {
+  width: 80px;
+  height: 4px;
+  accent-color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-track-lane {
+  position: relative;
+  flex-grow: 1;
+  min-height: 96px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 100%;
+}
+
+/* 4. Audio Clip Ribbon */
+.creator-clip-ribbon {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  border-radius: var(--radius-md, 8px);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.28) 0%, rgba(124, 77, 255, 0.32) 55%, rgba(224, 64, 251, 0.25) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.45);
+  box-shadow: 
+    0 4px 18px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  cursor: grab;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 12px;
+  overflow: hidden;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-clip-ribbon:hover {
+  border-color: rgba(0, 229, 255, 0.8);
+  box-shadow: 
+    0 6px 22px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(0, 229, 255, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.creator-clip-ribbon.is-selected {
+  border-color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.42) 0%, rgba(124, 77, 255, 0.45) 55%, rgba(224, 64, 251, 0.35) 100%);
+  box-shadow: 
+    0 0 24px rgba(0, 229, 255, 0.6),
+    0 0 40px rgba(124, 77, 255, 0.4),
+    inset 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+.creator-clip-ribbon:active {
+  cursor: grabbing;
+}
+
+.creator-clip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.creator-clip-duration {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.creator-clip-waveform {
+  height: 28px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  opacity: 0.85;
+}
+
+.creator-clip-bar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+}
+
+.creator-clip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Trim handles */
+.creator-trim-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background var(--transition-fast, 150ms);
+}
+
+.creator-trim-handle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.creator-trim-handle.start {
+  left: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.creator-trim-handle.end {
+  right: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+/* 5. Playhead Beacon */
+.creator-playhead-beacon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-accent-cyan, #06b6d4);
+  box-shadow: 0 0 12px var(--color-accent-cyan, #06b6d4);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.creator-playhead-cap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--color-accent-cyan, #06b6d4);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* 6. Action Toolbar & Ingestion Drawer */
+.creator-bottom-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4, 16px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(14, 12, 24, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.creator-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-action-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.creator-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.creator-action-btn.is-primary {
+  background: var(--color-accent-iris, #a78bfa);
+  color: #000;
+  border-color: var(--color-accent-iris, #a78bfa);
+}
+
+/* 7. Staging Drawer (Source Ingestion) */
+.creator-staging-drawer {
+  padding: var(--space-5, 20px);
+  background: rgba(12, 9, 22, 0.95);
+  border: 1px solid rgba(138, 92, 246, 0.3);
+  border-radius: var(--radius-xl, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.creator-staging-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.creator-staging-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.creator-staging-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.creator-source-card {
+  padding: var(--space-3, 12px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color var(--transition-fast, 150ms);
+}
+
+.creator-source-card:hover {
+  border-color: rgba(138, 92, 246, 0.4);
+}
+
+.creator-source-card.is-listen-only {
+  border-color: rgba(244, 63, 94, 0.3);
+  background: rgba(244, 63, 94, 0.03);
+}
+
+.creator-source-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.creator-source-artist {
+  font-size: 11px;
+  color: var(--color-text-secondary, #94a3b8);
+}
+
+.creator-source-rights-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.creator-source-rights-badge.editable {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-accent-emerald, #10b981);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.creator-source-rights-badge.listen-only {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--color-accent-rose, #f43f5e);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.creator-source-rights-desc {
+  font-size: 10px;
+  color: var(--color-text-secondary, #94a3b8);
+  line-height: 1.3;
+}
+
+/* 8. Milestone 5.2 Advanced Clip Editing Enhancements */
+.creator-trim-handle.is-active {
+  background: rgba(138, 92, 246, 0.6);
+  box-shadow: 0 0 10px rgba(138, 92, 246, 0.8);
+}
+
+.creator-clip-slip-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  cursor: ew-resize;
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-accent-cyan, #06b6d4);
+  transition: all var(--transition-fast, 150ms);
+  margin: 2px 0;
+  user-select: none;
+}
+
+.creator-clip-slip-zone:hover {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: var(--color-accent-cyan, #06b6d4);
+  color: #fff;
+}
+
+/* Fade Curve SVG Ramps */
+.creator-fade-ramp {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.creator-fade-ramp.in {
+  left: 0;
+}
+
+.creator-fade-ramp.out {
+  right: 0;
+}
+
+.creator-fade-path {
+  fill: rgba(0, 0, 0, 0.4);
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 1;
+}
+
+/* Crossfade Bridge on Track Lane */
+.creator-crossfade-bridge {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.2),
+    rgba(245, 158, 11, 0.2) 6px,
+    rgba(245, 158, 11, 0.35) 6px,
+    rgba(245, 158, 11, 0.35) 12px
+  );
+  border: 1px dashed rgba(245, 158, 11, 0.8);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-crossfade-bridge:hover {
+  background: rgba(245, 158, 11, 0.4);
+  border-color: #fff;
+  transform: scale(1.02);
+}
+
+.creator-crossfade-badge {
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  padding: 2px 6px;
+  background: rgba(14, 11, 24, 0.9);
+  color: var(--color-accent-amber, #f59e0b);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Tempo / BPM Disparity Badge */
+.creator-tempo-mismatch-badge {
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  padding: 1px 4px;
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--color-accent-amber, #f59e0b);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 3px;
+  margin-left: 4px;
+}
+
+/* 9. Milestone 5.2 Automation Filament Lane */
+.creator-automation-lane-container {
+  position: relative;
+  height: 48px;
+  background: rgba(8, 6, 14, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: crosshair;
+  overflow: hidden;
+}
+
+.creator-automation-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 8px;
+  background: rgba(16, 12, 28, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-automation-param-select {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  outline: none;
+}
+
+.creator-automation-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.creator-automation-filament {
+  fill: none;
+  stroke: var(--color-accent-cyan, #06b6d4);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.7));
+}
+
+.creator-automation-point-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--color-accent-cyan, #06b6d4);
+  border: 1px solid #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+  cursor: grab;
+  z-index: 10;
+  transition: transform var(--transition-fast, 100ms);
+}
+
+.creator-automation-point-handle:hover,
+.creator-automation-point-handle:active {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.3);
+  background: #fff;
+}
+
+/* 10. Milestone 5.2 Acoustic Transformation Spine (Processing Dock) */
+.creator-processing-dock {
+  background: var(--holo-surface-elevated, rgba(14, 11, 26, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(124, 77, 255, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+}
+
+.creator-processing-dock::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-aurora-spectral);
+  opacity: 0.8;
+}
+
+.creator-spine-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.creator-spine-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.creator-spine-flow-diagram {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: var(--color-text-secondary, #94a3b8);
+  letter-spacing: 0.05em;
+}
+
+.creator-spine-flow-diagram strong {
+  color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-spine-chain {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 2px 10px 2px;
+}
+
+.creator-processor-node {
+  flex-shrink: 0;
+  width: 175px;
+  background: rgba(22, 18, 40, 0.7);
+  border: 1px solid rgba(138, 92, 246, 0.25);
+  border-radius: var(--radius-md, 8px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-processor-node:hover {
+  border-color: rgba(138, 92, 246, 0.5);
+}
+
+.creator-processor-node.is-bypassed {
+  opacity: 0.5;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 12, 25, 0.4);
+}
+
+.creator-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.creator-node-title {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-node-power-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full, 9999px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 10px;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-node-power-btn.is-active {
+  background: var(--color-accent-emerald, #10b981);
+  border-color: var(--color-accent-emerald, #10b981);
+  color: #000;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.creator-node-params {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.creator-param-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.creator-param-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-text-secondary, #94a3b8);
+}
+
+.creator-param-slider {
+  width: 100%;
+  height: 3px;
+  accent-color: var(--color-accent-iris, #a78bfa);
+}
+
+.creator-node-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.creator-node-order-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary, #94a3b8);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 2px 4px;
+}
+
+.creator-node-order-btn:hover:not(:disabled) {
+  color: #fff;
+}
+
+.creator-node-order-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* 11. Milestone 5.3 Beat-Aware Arrangement & Musical Intelligence Styles */
+
+/* Section Strip on Musical Ruler */
+.creator-section-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  display: flex;
+  background: rgba(12, 10, 22, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.creator-section-block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  border-left: 2px solid var(--color-accent-iris, #a78bfa);
+  background: linear-gradient(90deg, rgba(138, 92, 246, 0.28) 0%, rgba(56, 189, 248, 0.16) 50%, rgba(244, 114, 182, 0.12) 100%);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast, 150ms);
+  overflow: hidden;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+.creator-section-block:hover {
+  background: linear-gradient(90deg, rgba(138, 92, 246, 0.45) 0%, rgba(56, 189, 248, 0.25) 50%, rgba(244, 114, 182, 0.2) 100%);
+  box-shadow: inset 0 0 14px rgba(138, 92, 246, 0.4), 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.creator-section-block.is-active {
+  border-color: #ffffff;
+  background: linear-gradient(90deg, rgba(138, 92, 246, 0.55) 0%, rgba(56, 189, 248, 0.35) 50%, rgba(244, 114, 182, 0.3) 100%);
+  box-shadow: 0 0 16px rgba(138, 92, 246, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.creator-section-type-badge {
+  font-size: 8px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.4);
+  color: var(--color-accent-iris, #a78bfa);
+  margin-left: 4px;
+}
+
+/* Phrase Boundary & Downbeat Ruler Markers */
+.creator-ruler-tick.is-phrase {
+  border-left: 2px solid var(--color-accent-cyan, #06b6d4);
+  color: var(--color-accent-cyan, #06b6d4);
+  font-weight: 800;
+  z-index: 4;
+}
+
+.creator-ruler-tick.is-phrase::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 1px;
+  box-shadow: 0 0 8px var(--color-accent-cyan, #06b6d4);
+}
+
+.creator-ruler-tick.is-downbeat {
+  border-left: 1.5px solid var(--color-accent-iris, #a78bfa);
+  color: var(--color-accent-iris, #a78bfa);
+  font-weight: 600;
+}
+
+/* Luminous Energy Terrain Layer */
+.creator-energy-terrain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  pointer-events: none;
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.creator-energy-path {
+  fill: url(#energy-gradient);
+  stroke: var(--color-accent-amber, #f59e0b);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+}
+
+/* Harmonic Transition Bridges Between Clips */
+.creator-harmonic-bridge {
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: var(--radius-full, 9999px);
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  background: rgba(14, 11, 26, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  z-index: 8;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-harmonic-bridge:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 12px rgba(138, 92, 246, 0.5);
+}
+
+.creator-harmonic-bridge.is-compatible {
+  border-color: var(--color-accent-emerald, #10b981);
+  color: var(--color-accent-emerald, #10b981);
+}
+
+.creator-harmonic-bridge.is-tension {
+  border-color: var(--color-accent-rose, #f43f5e);
+  color: var(--color-accent-rose, #f43f5e);
+}
+
+.creator-harmonic-bridge.is-relative {
+  border-color: var(--color-accent-cyan, #06b6d4);
+  color: var(--color-accent-cyan, #06b6d4);
+}
+
+/* Tempo Compatibility Badges on Clips */
+.creator-tempo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  padding: 1px 4px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.creator-tempo-chip.match {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-accent-emerald, #10b981);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.creator-tempo-chip.near {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-accent-amber, #f59e0b);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.creator-tempo-chip.mismatch {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--color-accent-rose, #f43f5e);
+  border-color: rgba(244, 63, 94, 0.35);
+}
+
+/* Floating Arrangement Intelligence Surface */
+.creator-arrangement-surface {
+  background: var(--holo-surface-elevated, rgba(13, 10, 24, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-4, 16px) var(--space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 12px);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(138, 92, 246, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  margin-top: 4px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+}
+
+.creator-arrangement-surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-aurora-spectral);
+  opacity: 0.8;
+}
+
+.creator-intel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.creator-intel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-3, 12px);
+}
+
+.creator-intel-card {
+  padding: 10px 14px;
+  background: rgba(22, 17, 38, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all var(--transition-fast, 150ms);
+  backdrop-filter: blur(12px);
+}
+
+.creator-intel-card:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: rgba(30, 24, 52, 0.85);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 14px rgba(168, 85, 247, 0.25);
+}
+
+.creator-intel-label {
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  color: var(--color-text-secondary, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.creator-intel-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.creator-intel-desc {
+  font-size: 10px;
+  color: var(--color-text-secondary, #94a3b8);
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   Milestone 5.4 — Audio Warping & Musical Timing Styles
+   ========================================================================== */
+
+/* Clip Ribbon Warp Badge */
+.creator-clip-warp-badge {
+  font-size: 8.5px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.creator-clip-warp-badge.is-project {
+  background: rgba(16, 185, 129, 0.25);
+  color: var(--color-accent-emerald, #10b981);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.3);
+}
+
+.creator-clip-warp-badge.is-beat {
+  background: rgba(100, 210, 255, 0.2);
+  color: var(--color-accent-cyan, #38bdf8);
+  border: 1px solid rgba(100, 210, 255, 0.4);
+}
+
+.creator-clip-warp-badge.is-free {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-secondary, #94a3b8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Warp Marker Pins on Clip Waveform */
+.creator-warp-marker-pin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  pointer-events: auto;
+  cursor: ew-resize;
+  z-index: 5;
+  transition: background var(--transition-fast, 150ms);
+}
+
+.creator-warp-marker-pin:hover {
+  background: #fff;
+  width: 3px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.creator-warp-marker-pin.is-anchor {
+  background: var(--color-accent-amber, #f59e0b);
+  width: 2.5px;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+
+.creator-warp-marker-pin.is-downbeat {
+  background: var(--color-accent-cyan, #38bdf8);
+  width: 2px;
+  box-shadow: 0 0 4px rgba(56, 189, 248, 0.4);
+}
+
+.creator-warp-marker-head {
+  position: absolute;
+  top: 1px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.creator-warp-marker-pin.is-anchor .creator-warp-marker-head {
+  border-radius: 1px;
+  transform: rotate(45deg);
+  background: var(--color-accent-amber, #f59e0b);
+}
+
+/* Contextual Warp Inspector Card */
+.creator-warp-inspector {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(20, 16, 36, 0.85);
+  border: 1px solid rgba(138, 92, 246, 0.25);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.creator-warp-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.creator-warp-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.creator-warp-mode-btn {
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-secondary, #94a3b8);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+}
+
+.creator-warp-mode-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.creator-warp-mode-btn.is-active {
+  background: rgba(138, 92, 246, 0.3);
+  border-color: var(--color-accent-iris, #8a5cf6);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(138, 92, 246, 0.4);
+}
+
+.creator-warp-meta-pill {
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: var(--color-text-secondary, #94a3b8);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.creator-warp-extreme-badge {
+  font-size: 9.5px;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  padding: 2px 6px;
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--color-accent-rose, #f43f5e);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  border-radius: 4px;
+  animation: pulse-extreme 2s infinite ease-in-out;
+}
+
+@keyframes pulse-extreme {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* M5.5 Audio Rendering, Export & Stem Bouncing Dialog */
+.creator-render-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 6, 16, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.creator-render-modal {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(18, 14, 34, 0.95);
+  border: 1px solid rgba(138, 92, 246, 0.35);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 32px rgba(138, 92, 246, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.creator-render-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.creator-render-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.creator-render-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.creator-render-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.creator-render-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary, #94a3b8);
+}
+
+.creator-render-btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.creator-render-option-btn {
+  flex: 1;
+  min-width: 120px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono, monospace);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary, #94a3b8);
+  cursor: pointer;
+  transition: all var(--transition-fast, 150ms);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.creator-render-option-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+.creator-render-option-btn.is-active {
+  background: rgba(138, 92, 246, 0.25);
+  border-color: var(--color-accent-iris, #8a5cf6);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(138, 92, 246, 0.35);
+}
+
+.creator-render-progress-box {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.creator-render-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.creator-render-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-iris, #8a5cf6), var(--color-accent-cyan, #38bdf8));
+  border-radius: 4px;
+  transition: width 150ms ease-out;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.creator-render-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.creator-render-meta-card {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.creator-render-meta-title {
+  font-size: 10px;
+  color: var(--color-text-secondary, #94a3b8);
+  text-transform: uppercase;
+}
+
+.creator-render-meta-val {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono, monospace);
+  color: #fff;
+}
+
+.creator-render-error-box {
+  padding: 12px 14px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 6px;
+  color: var(--color-accent-rose, #f43f5e);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.creator-render-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .creator-transport-btn,
+  .creator-clip-ribbon,
+  .creator-action-btn,
+  .creator-processor-node,
+  .creator-section-block,
+  .creator-harmonic-bridge,
+  .creator-warp-marker-pin,
+  .creator-warp-extreme-badge,
+  .creator-render-option-btn,
+  .creator-render-progress-bar-fill {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+
+

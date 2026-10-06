@@ -1,0 +1,401 @@
+/* ==========================================================================
+   SONORA Search View Styles
+   Authoritative Reference: PRD.md Section 12 & 52, DESIGN_SYSTEM.md, MILESTONE 2A
+   ========================================================================== */
+
+.sonora-search-view {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  z-index: var(--z-stage);
+  animation: sonora-view-fade-in var(--motion-duration-slow) var(--motion-ease-out);
+}
+
+/* 1. Typographic Search Plinth & Active Filter Chips */
+.sonora-search-plinth {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.sonora-search-input-shell {
+  width: 100%;
+  max-width: 720px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(8, 8, 18, 0.78);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 12px 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-search-input-shell:focus-within {
+  border-color: var(--aurora-cyan);
+  background: rgba(12, 12, 26, 0.88);
+  box-shadow: 
+    0 0 35px rgba(0, 229, 255, 0.4),
+    0 0 60px rgba(124, 77, 255, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.sonora-search-icon {
+  font-size: 1.2rem;
+  color: var(--aurora-cyan);
+  margin-right: var(--space-3);
+  filter: drop-shadow(0 0 8px var(--aurora-cyan));
+}
+
+.sonora-search-input {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.sonora-search-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.sonora-search-clear {
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+  transition: color var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-search-clear:hover {
+  color: #ffffff;
+  filter: drop-shadow(0 0 6px var(--aurora-magenta));
+}
+
+.sonora-search-genre-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  max-width: 860px;
+}
+
+.sonora-genre-chip {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-genre-chip:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.sonora-genre-chip.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2) 0%, rgba(124, 77, 255, 0.25) 100%);
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* 2. Top Hero Track Match Plinth */
+.sonora-search-hero-match {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(124, 77, 255, 0.12) 0%, rgba(10, 10, 18, 0.9) 70%);
+  border: 1px solid rgba(124, 77, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.75), 0 0 24px var(--glow-iris);
+}
+
+.sonora-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sonora-hero-badge {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-accent-cyan);
+  font-weight: 700;
+}
+
+.sonora-hero-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sonora-hero-sub {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* 3. Search Results Grid */
+.sonora-search-results-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.sonora-search-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-faint);
+  padding-bottom: var(--space-2);
+}
+
+.sonora-search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.sonora-search-track-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid var(--color-accent-iris);
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid var(--border-faint);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-search-track-item:hover {
+  background: linear-gradient(90deg, rgba(0, 229, 255, 0.08) 0%, transparent 100%);
+  border-left-color: var(--color-accent-cyan);
+  transform: translateX(3px);
+}
+
+.sonora-search-track-item.is-active {
+  border-left-color: var(--color-accent-cyan);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.sonora-search-track-item.is-playing {
+  border-left-color: var(--color-accent-iris);
+  background: rgba(124, 77, 255, 0.12);
+}
+
+.sonora-search-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sonora-search-item-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sonora-search-item-artist {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sonora-search-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* 4. Harmonic Key Compatibility Indicator */
+.sonora-camelot-selector {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 860px;
+  margin: var(--space-3) auto 0;
+}
+
+.sonora-camelot-sector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 2px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-faint);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-camelot-sector:hover {
+  background: rgba(124, 77, 255, 0.15);
+  border-color: rgba(124, 77, 255, 0.4);
+}
+
+.sonora-camelot-sector.is-selected {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: var(--color-accent-cyan);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.35);
+}
+
+.sonora-camelot-sector.is-compatible {
+  border-color: rgba(0, 229, 255, 0.4);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .sonora-search-hero-match {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sonora-camelot-selector {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .sonora-camelot-selector {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Source Badges and Rights Tags */
+.sonora-badge-source {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-faint);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+}
+
+.sonora-badge-source.is-creator {
+  border-color: rgba(255, 179, 0, 0.35);
+  background: rgba(255, 179, 0, 0.08);
+  color: var(--color-accent-amber);
+}
+
+.sonora-badge-source.is-local {
+  border-color: rgba(167, 139, 250, 0.35);
+  background: rgba(167, 139, 250, 0.08);
+  color: #c084fc;
+}
+
+.sonora-badge-source.is-licensed {
+  border-color: rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8;
+}
+
+.sonora-badge-source.is-demo {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.06);
+  color: var(--color-accent-cyan);
+}
+
+.sonora-badge-source.is-jamendo {
+  border-color: rgba(251, 113, 133, 0.35);
+  background: rgba(251, 113, 133, 0.08);
+  color: #fb7185;
+}
+
+.sonora-badge-rights {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sonora-badge-rights.is-dj {
+  color: var(--color-accent-cyan);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.sonora-badge-rights.is-listen-only {
+  color: var(--color-accent-amber);
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid rgba(255, 179, 0, 0.25);
+}
+
+.sonora-dj-unavailable-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+  padding: 3px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.sonora-dj-unavailable-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-accent-amber);
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid rgba(255, 179, 0, 0.25);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}

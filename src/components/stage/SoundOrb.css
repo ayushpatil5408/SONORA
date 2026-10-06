@@ -1,0 +1,470 @@
+/* ==========================================================================
+   SONORA Living Sound Orb Primitive Styles
+   Authoritative Reference: VISUAL_LANGUAGE.md & DESIGN_SYSTEM.md
+   ========================================================================== */
+
+.sonora-sound-orb-stage {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-4) auto;
+  user-select: none;
+}
+
+/* 1. Harmonic Constellation Web & Chords (SVG Overlay) */
+.sonora-orb-constellation-web {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-field);
+}
+
+.sonora-web-orbit-outer {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-dasharray: 4 8;
+  stroke-width: 1;
+}
+
+.sonora-web-orbit-mid {
+  fill: none;
+  stroke: rgba(124, 77, 255, 0.12);
+  stroke-dasharray: 2 6;
+  stroke-width: 1;
+}
+
+.sonora-web-orbit-inner {
+  fill: none;
+  stroke: rgba(0, 229, 255, 0.1);
+  stroke-width: 1;
+}
+
+.sonora-web-chord {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+  stroke-dasharray: 3 6;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-web-chord.is-active-route {
+  stroke: rgba(0, 229, 255, 0.35);
+  stroke-dasharray: none;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.4));
+}
+
+.sonora-web-chord.is-highlighted {
+  stroke: var(--color-accent-cyan);
+  stroke-width: 2;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 8px var(--color-accent-cyan));
+}
+
+/* 2. Concentric Resonant Orbital Rings */
+.sonora-orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: all var(--motion-duration-slow) var(--motion-ease-out);
+}
+
+.sonora-orb-ring-inner {
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(0, 245, 255, 0.28);
+  box-shadow: 0 0 35px rgba(0, 245, 255, 0.18), inset 0 0 24px rgba(139, 92, 246, 0.14);
+}
+
+.sonora-orb-ring-outer {
+  width: 390px;
+  height: 390px;
+  border: 1px dashed rgba(236, 72, 153, 0.22);
+  box-shadow: 0 0 45px rgba(139, 92, 246, 0.12);
+}
+
+/* Rotation of orbital plane */
+@keyframes sonora-orbit-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sonora-orbit-counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes sonora-corona-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sonora-orb-ring-inner {
+    animation: sonora-orbit-rotate var(--motion-duration-orbit) linear infinite;
+  }
+  
+  .sonora-orb-ring-outer {
+    animation: sonora-orbit-counter-rotate 72000ms linear infinite;
+  }
+}
+
+/* 2. Central Living Core Orb (Holographic Sound Object) */
+.sonora-orb-core-btn {
+  position: relative;
+  width: var(--sound-orb-size);
+  height: var(--sound-orb-size);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3e1b72 0%, #1c1138 40%, #0d081b 70%, #020206 100%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    0 0 40px var(--glow-iris),
+    0 0 20px rgba(0, 245, 255, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.65),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.9),
+    inset 0 0 32px rgba(139, 92, 246, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: var(--z-controls);
+  transition: all var(--motion-duration-normal) var(--motion-ease-spring);
+  padding: 0;
+  outline: none;
+  overflow: visible;
+}
+
+/* Glossy specular lens dome on top half */
+.sonora-orb-core-btn::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 14%;
+  right: 14%;
+  height: 44%;
+  border-radius: 50% 50% 45% 45% / 60% 60% 35% 35%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.sonora-orb-core-btn:focus-visible {
+  outline: 2px solid var(--aurora-cyan);
+  outline-offset: 6px;
+  box-shadow: 0 0 28px var(--aurora-cyan);
+}
+
+.sonora-orb-core-btn:hover {
+  transform: scale(1.06);
+  box-shadow:
+    0 0 65px var(--glow-iris-intense),
+    0 0 30px rgba(0, 245, 255, 0.55),
+    inset 0 2px 5px rgba(255, 255, 255, 0.85),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.9),
+    inset 0 0 40px rgba(236, 72, 153, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Color shift for active decks */
+.sonora-orb-core-btn.is-deck-a {
+  background: radial-gradient(circle at 35% 30%, #0d4a5e 0%, #072b38 40%, #03151c 70%, #010609 100%);
+  border-color: rgba(0, 245, 255, 0.55);
+  box-shadow:
+    0 0 50px var(--glow-cyan),
+    0 0 24px rgba(59, 130, 246, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.9),
+    inset 0 0 35px rgba(0, 245, 255, 0.5);
+}
+
+.sonora-orb-core-btn.is-deck-b {
+  background: radial-gradient(circle at 35% 30%, #604207 0%, #372504 40%, #1a1102 70%, #070400 100%);
+  border-color: rgba(245, 158, 11, 0.55);
+  box-shadow:
+    0 0 50px var(--glow-amber),
+    0 0 24px rgba(236, 72, 153, 0.45),
+    inset 0 2px 4px rgba(255, 255, 255, 0.7),
+    inset 0 -6px 14px rgba(0, 0, 0, 0.9),
+    inset 0 0 35px rgba(245, 158, 11, 0.5);
+}
+
+/* Biological acoustic breathing when playing */
+@keyframes sonora-core-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 40px var(--glow-iris),
+      0 0 20px rgba(0, 245, 255, 0.35),
+      inset 0 2px 4px rgba(255, 255, 255, 0.65),
+      inset 0 0 32px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    transform: scale(1.055);
+    box-shadow:
+      0 0 70px var(--glow-iris-intense),
+      0 0 35px rgba(0, 245, 255, 0.65),
+      0 0 50px rgba(236, 72, 153, 0.45),
+      inset 0 2px 6px rgba(255, 255, 255, 0.85),
+      inset 0 0 42px rgba(139, 92, 246, 0.75);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sonora-orb-core-btn.is-playing {
+    animation: sonora-core-pulse var(--motion-duration-pulse) ease-in-out infinite;
+  }
+}
+
+/* Interior Core Icon & Status */
+.sonora-orb-symbol {
+  font-size: var(--text-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
+  z-index: 3;
+}
+
+.sonora-orb-state-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  z-index: 3;
+}
+
+.sonora-orb-track-hint {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  color: var(--color-text-tertiary);
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+  z-index: 3;
+}
+
+.sonora-orb-harmonic-hint {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+  z-index: 3;
+}
+
+/* Rotating Chromatic Corona */
+.sonora-orb-corona {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.35);
+  background: conic-gradient(from 0deg, rgba(0, 245, 255, 0.35) 0%, rgba(139, 92, 246, 0.4) 25%, rgba(236, 72, 153, 0.4) 50%, rgba(245, 158, 11, 0.35) 75%, rgba(0, 245, 255, 0.35) 100%);
+  filter: blur(10px);
+  pointer-events: none;
+  opacity: 0.8;
+  transition: all var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sonora-orb-corona {
+    animation: sonora-corona-spin 16s linear infinite;
+  }
+}
+
+.sonora-orb-core-btn:hover .sonora-orb-corona {
+  opacity: 0.95;
+  inset: -18px;
+  filter: blur(14px);
+}
+
+.sonora-orb-core-btn.is-deck-a .sonora-orb-corona {
+  border-color: rgba(0, 245, 255, 0.5);
+  background: conic-gradient(from 0deg, rgba(0, 245, 255, 0.45) 0%, rgba(59, 130, 246, 0.45) 50%, rgba(139, 92, 246, 0.4) 100%);
+}
+
+.sonora-orb-core-btn.is-deck-b .sonora-orb-corona {
+  border-color: rgba(245, 158, 11, 0.5);
+  background: conic-gradient(from 0deg, rgba(245, 158, 11, 0.45) 0%, rgba(249, 115, 22, 0.45) 50%, rgba(236, 72, 153, 0.4) 100%);
+}
+
+/* 3. Orbiting Satellite Workflow Nodes (Holographic Glass Capsules) */
+.sonora-orbit-node {
+  position: absolute;
+  padding: 7px 15px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 10, 22, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: all var(--motion-duration-normal) var(--motion-ease-out);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  z-index: var(--z-controls);
+}
+
+.sonora-orbit-node:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.18) 0%, rgba(139, 92, 246, 0.25) 100%);
+  border-color: var(--aurora-cyan);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 
+    0 0 24px rgba(0, 245, 255, 0.45),
+    0 0 40px rgba(139, 92, 246, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.sonora-orbit-node:focus-visible {
+  outline: 2px solid var(--aurora-cyan);
+  outline-offset: 2px;
+}
+
+.sonora-orbit-node.is-active-step {
+  border-color: var(--aurora-cyan);
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+}
+
+.sonora-orbit-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-iris);
+  box-shadow: 0 0 6px var(--color-accent-iris);
+}
+
+.sonora-orbit-node.is-active-step .sonora-orbit-dot {
+  background: var(--color-accent-cyan);
+  box-shadow: 0 0 8px var(--color-accent-cyan);
+}
+
+/* Spatial Coordinate Positioning of 5 Workflow Nodes around the 380px orbit */
+.node-listen   { top: 12px;  left: 50%; transform: translateX(-50%); }
+.node-analyze  { top: 90px;  right: 10px; }
+.node-mix      { bottom: 90px; right: 15px; }
+.node-edit     { bottom: 20px; left: 50%; transform: translateX(-50%); }
+.node-create   { top: 160px; left: -10px; }
+
+/* 5. Dynamic Harmonic Node Tooltip */
+.sonora-orb-node-tooltip {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: var(--z-controls);
+  width: 100%;
+  max-width: 440px;
+}
+
+.sonora-orb-tooltip-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 10, 16, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-luminous);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-orb-tooltip-content.is-active {
+  background: rgba(16, 14, 28, 0.9);
+  border-color: rgba(124, 77, 255, 0.45);
+  box-shadow: 0 4px 24px rgba(124, 77, 255, 0.25);
+}
+
+.sonora-orb-tooltip-title {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-accent-cyan);
+  font-weight: 700;
+}
+
+.sonora-orb-tooltip-desc {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sonora-orb-tooltip-idle {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-secondary);
+}
+
+
+/* Responsive Adjustments for Mobile Viewports */
+@media (max-width: 600px) {
+  .sonora-sound-orb-stage {
+    width: 320px;
+    height: 320px;
+  }
+
+  .sonora-orb-ring-inner {
+    width: 180px;
+    height: 180px;
+  }
+
+  .sonora-orb-ring-outer {
+    width: 280px;
+    height: 280px;
+  }
+
+  .sonora-orb-core-btn {
+    width: 120px;
+    height: 120px;
+  }
+
+  .sonora-orbit-node {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+  }
+
+  .node-listen   { top: 5px; }
+  .node-analyze  { top: 60px; right: -5px; }
+  .node-mix      { bottom: 60px; right: -5px; }
+  .node-edit     { bottom: 5px; }
+  .node-create   { top: 120px; left: -15px; }
+}

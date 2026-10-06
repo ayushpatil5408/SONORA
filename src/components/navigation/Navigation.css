@@ -1,0 +1,264 @@
+/* ==========================================================================
+   SONORA Spatial Navigation Styles
+   Authoritative Reference: PRD.md Section 10 & DESIGN_SYSTEM.md
+   ========================================================================== */
+
+.sonora-header-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(5, 5, 14, 0.76);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-8);
+  z-index: var(--z-nav);
+  user-select: none;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.65),
+    0 1px 0 0 rgba(255, 255, 255, 0.08) inset;
+  transition: all var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+.sonora-header-nav::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 245, 255, 0.45) 25%, rgba(139, 92, 246, 0.5) 50%, rgba(236, 72, 153, 0.45) 75%, transparent 100%);
+  pointer-events: none;
+}
+
+/* 1. Brand Mark */
+.sonora-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-spring);
+}
+
+.sonora-nav-brand:focus-visible {
+  outline: 2px solid var(--aurora-cyan);
+  outline-offset: 4px;
+}
+
+.sonora-nav-brand:hover {
+  transform: translateY(-1px);
+}
+
+.sonora-nav-orb {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--aurora-cyan) 30%, var(--aurora-violet) 70%, var(--aurora-magenta) 100%);
+  box-shadow: 
+    0 0 16px var(--aurora-cyan),
+    0 0 32px rgba(139, 92, 246, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.85);
+  transition: all var(--motion-duration-normal) var(--motion-ease-spring);
+  position: relative;
+}
+
+.sonora-nav-brand:hover .sonora-nav-orb {
+  transform: scale(1.35);
+  box-shadow: 
+    0 0 26px var(--aurora-cyan),
+    0 0 45px rgba(236, 72, 153, 0.7),
+    0 0 8px #ffffff;
+}
+
+.sonora-nav-orb.is-playing {
+  animation: sonora-nav-orb-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes sonora-nav-orb-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 16px var(--aurora-cyan), 0 0 28px rgba(139, 92, 246, 0.45);
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 28px var(--aurora-cyan), 0 0 40px var(--aurora-magenta), 0 0 12px #ffffff;
+  }
+}
+
+.sonora-nav-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 800;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-text-primary);
+  background: linear-gradient(135deg, #ffffff 35%, var(--aurora-cyan) 75%, var(--aurora-magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 2. Spatial Navigation Links */
+.sonora-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sonora-nav-item {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+  position: relative;
+}
+
+.sonora-nav-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+  transform: translateY(-1px);
+}
+
+.sonora-nav-item:focus-visible {
+  outline: 2px solid var(--aurora-cyan);
+  outline-offset: 2px;
+}
+
+.sonora-nav-item.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.16) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border-color: rgba(0, 245, 255, 0.45);
+  font-weight: 700;
+  box-shadow: 
+    0 0 24px rgba(0, 245, 255, 0.25),
+    0 0 10px rgba(139, 92, 246, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+}
+
+.sonora-nav-item.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--gradient-aurora-spectral);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 10px var(--aurora-cyan);
+}
+
+.sonora-nav-item-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-tertiary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sonora-nav-item.is-active .sonora-nav-item-badge {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: rgba(0, 229, 255, 0.4);
+  color: var(--aurora-cyan);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+/* 3. System Telemetry & Status Node */
+.sonora-nav-telemetry {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.sonora-nav-status-node {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-faint);
+}
+
+.sonora-nav-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-text-tertiary);
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-nav-beacon.is-online {
+  background-color: var(--color-accent-cyan);
+  box-shadow: 0 0 10px var(--color-accent-cyan);
+}
+
+.sonora-nav-beacon.is-deck-a {
+  background-color: var(--color-accent-cyan);
+  box-shadow: 0 0 12px var(--color-accent-cyan);
+}
+
+.sonora-nav-beacon.is-deck-b {
+  background-color: var(--color-accent-amber);
+  box-shadow: 0 0 12px var(--color-accent-amber);
+}
+
+.sonora-nav-beacon.is-degraded {
+  background-color: var(--color-accent-amber);
+  box-shadow: 0 0 10px var(--color-accent-amber);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sonora-header-nav {
+    padding: 0 var(--space-4);
+  }
+  
+  .sonora-nav-telemetry {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .sonora-header-nav {
+    height: auto;
+    padding: var(--space-3) var(--space-3);
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .sonora-nav-links {
+    width: 100%;
+    justify-content: space-around;
+    overflow-x: auto;
+  }
+
+  .sonora-nav-item {
+    font-size: var(--text-xs);
+    padding: 4px 8px;
+  }
+}

@@ -1,0 +1,1072 @@
+/**
+ * SONORA DJ Environment Styles
+ * Authoritative Reference: PRD.md Section 19, DESIGN_SYSTEM.md, MOTION_SYSTEM.md, Milestone 3
+ * 
+ * Master stylesheets for the three selectable DJ environments:
+ * 1. ORGANIC ORBITAL
+ * 2. LIQUID INSTRUMENT
+ * 3. ACOUSTIC ORGANISM
+ */
+
+/* =============================================================================
+   1. MASTER STAGE CONTAINER & TRANSITION MORPHING
+   ============================================================================= */
+
+.sonora-dj-workspace-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-faint);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.85);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background Audio-Reactive Canvas */
+.sonora-audio-reactive-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Environmental Morph Transitions (400ms - 800ms target) */
+.sonora-environment-viewport {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s ease-out;
+}
+
+.sonora-environment-viewport.is-morphing {
+  opacity: 0.4;
+  transform: scale(0.985);
+  filter: blur(4px);
+}
+
+/* Three-Column Spatial Assembly */
+.sonora-env-assembly {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.25fr) minmax(240px, 0.9fr) minmax(320px, 1.25fr);
+  gap: var(--space-4);
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+}
+
+/* =============================================================================
+   2. SHARED DECK STRUCTURE & HEADER
+   ============================================================================= */
+
+.sonora-env-deck {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4);
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: rgba(8, 8, 18, 0.68);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+}
+
+.sonora-env-deck.is-deck-a {
+  border-left: 2px solid var(--aurora-cyan);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    -4px 0 24px rgba(0, 229, 255, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.sonora-env-deck.is-deck-b {
+  border-right: 2px solid var(--aurora-amber);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    4px 0 24px rgba(255, 179, 0, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.sonora-env-deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+  z-index: 3;
+}
+
+.sonora-env-deck-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.is-deck-a .sonora-env-deck-badge {
+  color: var(--color-accent-cyan);
+}
+
+.is-deck-b .sonora-env-deck-badge {
+  color: var(--color-accent-amber);
+}
+
+.sonora-env-deck-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: #ffffff;
+  margin: 2px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.sonora-env-deck-artist {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin-top: 1px;
+}
+
+.sonora-env-deck-meta-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.sonora-env-bpm-badge,
+.sonora-env-key-badge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-secondary);
+}
+
+.is-deck-a .sonora-env-key-badge {
+  color: var(--color-accent-cyan);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+.is-deck-b .sonora-env-key-badge {
+  color: var(--color-accent-amber);
+  background: rgba(255, 179, 0, 0.1);
+}
+
+.sonora-env-timecode {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+/* Ingest / Demo Buttons */
+.sonora-env-ingest-trigger {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-luminous);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) ease-out;
+}
+
+.sonora-env-ingest-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* =============================================================================
+   3. TURNTABLE PLINTH & ROTATING DISC
+   ============================================================================= */
+
+.sonora-env-turntable-zone {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-2) 0;
+}
+
+.sonora-env-disc {
+  position: relative;
+  width: 195px;
+  height: 195px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  background: 
+    radial-gradient(circle at center, #1b1b28 12%, transparent 13%),
+    repeating-radial-gradient(circle at center, #090912 0, #090912 2px, #181826 3px, #181826 4px),
+    conic-gradient(from 0deg, rgba(0, 229, 255, 0.12), rgba(124, 77, 255, 0.16), rgba(224, 64, 251, 0.14), rgba(255, 179, 0, 0.12), rgba(0, 229, 255, 0.12));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 6px 36px rgba(0, 0, 0, 0.85),
+    inset 0 0 24px rgba(0, 0, 0, 0.9),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s ease-out;
+}
+
+.is-deck-a .sonora-env-disc {
+  border-color: rgba(0, 229, 255, 0.35);
+}
+
+.is-deck-b .sonora-env-disc {
+  border-color: rgba(255, 179, 0, 0.35);
+}
+
+.sonora-env-disc.is-playing {
+  animation: sonora-turntable-spin 3.2s linear infinite;
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(124, 77, 255, 0.25),
+    inset 0 0 24px rgba(0, 0, 0, 0.9);
+}
+
+.is-deck-a .sonora-env-disc.is-playing {
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(0, 229, 255, 0.35),
+    inset 0 0 24px rgba(0, 0, 0, 0.9);
+}
+
+.is-deck-b .sonora-env-disc.is-playing {
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.9),
+    0 0 35px rgba(255, 179, 0, 0.35),
+    inset 0 0 24px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes sonora-turntable-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonora-env-disc.is-playing {
+    animation: none;
+  }
+}
+
+.sonora-env-disc-center-node {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #ffffff 0%, rgba(24, 24, 38, 0.95) 65%, #05050a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sonora-env-disc-spindle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff, 0 0 20px var(--aurora-cyan);
+}
+
+/* =============================================================================
+   4. TRANSPORT & TACTILE CONTROLS
+   ============================================================================= */
+
+.sonora-env-transport-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  z-index: 3;
+}
+
+.sonora-env-cue-btn,
+.sonora-env-play-btn,
+.sonora-env-stop-btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+  outline: none;
+}
+
+.sonora-env-cue-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-luminous);
+  color: var(--color-text-secondary);
+}
+
+.sonora-env-cue-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.sonora-env-play-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-luminous);
+  color: #ffffff;
+}
+
+.sonora-env-play-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+}
+
+.sonora-env-play-btn.is-active {
+  font-weight: 800;
+}
+
+.is-deck-a .sonora-env-play-btn.is-active {
+  background: rgba(0, 229, 255, 0.18);
+  border-color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.4);
+}
+
+.is-deck-b .sonora-env-play-btn.is-active {
+  background: rgba(255, 179, 0, 0.18);
+  border-color: var(--color-accent-amber);
+  color: var(--color-accent-amber);
+  box-shadow: 0 0 16px rgba(255, 179, 0, 0.4);
+}
+
+.sonora-env-stop-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-faint);
+  color: var(--color-text-tertiary);
+}
+
+.sonora-env-stop-btn:hover {
+  background: rgba(255, 60, 60, 0.15);
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+/* EQ, Filter, Volume, Pitch Sliders */
+.sonora-env-parameters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-faint);
+  z-index: 3;
+}
+
+.sonora-env-param-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.sonora-env-param-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.sonora-env-param-label:hover {
+  color: #ffffff;
+}
+
+.sonora-env-param-val {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  color: var(--color-text-secondary);
+}
+
+.sonora-env-slider {
+  width: 100%;
+  accent-color: var(--color-accent-cyan);
+  cursor: pointer;
+}
+
+.is-deck-b .sonora-env-slider {
+  accent-color: var(--color-accent-amber);
+}
+
+/* =============================================================================
+   5. CENTRAL MIXER: COMMON CONVERGENCE STRUCTURE
+   ============================================================================= */
+
+.sonora-env-mixer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-3);
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: rgba(8, 8, 16, 0.65);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Convergence Meters */
+.sonora-env-mixer-meters {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 90px;
+  margin: var(--space-2) 0;
+}
+
+.sonora-env-meter-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+}
+
+.sonora-env-meter-track {
+  width: 8px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.sonora-env-meter-fill {
+  width: 100%;
+  border-radius: var(--radius-full);
+  transition: height 0.08s ease-out;
+}
+
+.sonora-env-meter-fill.ch-a {
+  background: linear-gradient(to top, var(--color-accent-cyan) 0%, #38bdf8 100%);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+}
+
+.sonora-env-meter-fill.ch-b {
+  background: linear-gradient(to top, var(--color-accent-amber) 0%, #fb923c 100%);
+  box-shadow: 0 0 10px rgba(255, 179, 0, 0.4);
+}
+
+/* Master Volume */
+.sonora-env-master-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  max-width: 160px;
+  margin: var(--space-2) 0;
+}
+
+.sonora-env-master-slider {
+  width: 100%;
+  accent-color: var(--color-accent-iris);
+  cursor: pointer;
+}
+
+/* =============================================================================
+   6. CURVED CROSSFADER BRIDGE
+   ============================================================================= */
+
+.sonora-env-crossfader-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+
+.sonora-env-crossfader-telemetry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+}
+
+.sonora-env-crossfader-pos-text {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.sonora-env-crossfader-center-btn {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-luminous);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--motion-duration-fast) ease-out;
+}
+
+.sonora-env-crossfader-center-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Crossfader Track & Slider */
+.sonora-env-crossfader-track-wrapper {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonora-env-crossfader-slider {
+  width: 100%;
+  height: 7px;
+  border-radius: var(--radius-full);
+  appearance: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 229, 255, 0.5) 0%,
+    rgba(129, 140, 248, 0.4) 25%,
+    rgba(192, 132, 252, 0.5) 50%,
+    rgba(244, 114, 182, 0.4) 75%,
+    rgba(255, 179, 0, 0.5) 100%
+  );
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 8px rgba(192, 132, 252, 0.25);
+  outline: none;
+  cursor: pointer;
+}
+
+.sonora-env-crossfader-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #c084fc 40%, #7c3aed 70%, #1e1b4b 100%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(192, 132, 252, 0.9),
+    0 0 28px rgba(255, 255, 255, 0.5);
+  cursor: ew-resize;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.sonora-env-crossfader-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 
+    0 4px 14px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(192, 132, 252, 1),
+    0 0 36px rgba(255, 255, 255, 0.8);
+}
+
+.sonora-env-crossfader-readout-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--color-text-tertiary);
+}
+
+/* =============================================================================
+   7. ENVIRONMENT-SPECIFIC GEOMETRIC OVERLAYS
+   ============================================================================= */
+
+/* --- 1. ORGANIC ORBITAL --- */
+.sonora-orbital-core-orb {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-2) auto;
+  box-shadow: 0 0 40px rgba(168, 85, 247, 0.4), inset 0 0 25px rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease-out;
+}
+
+.sonora-orbital-core-inner {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #8b5cf6 50%, #1e1b4b 100%);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.6);
+  animation: sonora-orbital-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes sonora-orbital-pulse {
+  from { transform: scale(0.92); opacity: 0.8; }
+  to { transform: scale(1.06); opacity: 1; }
+}
+
+.orbital-ring-svg {
+  position: absolute;
+  inset: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  pointer-events: none;
+  animation: sonora-orbital-ring-spin 12s linear infinite;
+}
+
+@keyframes sonora-orbital-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- 2. LIQUID INSTRUMENT --- */
+.sonora-liquid-chamber-core {
+  position: relative;
+  width: 90px;
+  height: 130px;
+  border-radius: 45px 45px 55px 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-2) auto;
+  background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.25) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.35);
+}
+
+.sonora-liquid-droplet-inner {
+  width: 50px;
+  height: 80px;
+  border-radius: 25px 25px 35px 35px;
+  background: linear-gradient(180deg, #38bdf8 0%, #c084fc 70%, #f43f5e 100%);
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.6);
+  animation: sonora-liquid-undulate 5s ease-in-out infinite alternate;
+}
+
+@keyframes sonora-liquid-undulate {
+  0% { transform: scaleY(0.94) scaleX(1.04); border-radius: 28px 28px 32px 32px; }
+  100% { transform: scaleY(1.05) scaleX(0.96); border-radius: 22px 22px 38px 38px; }
+}
+
+/* --- 3. ACOUSTIC ORGANISM --- */
+.sonora-organism-spine-core {
+  position: relative;
+  width: 96px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: var(--space-2) auto;
+  padding: 6px 0;
+}
+
+.sonora-organism-rib-bar {
+  height: 2.5px;
+  background: linear-gradient(90deg, transparent 0%, #c084fc 30%, #ffffff 50%, #c084fc 70%, transparent 100%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.6);
+  transition: width 0.15s ease-out;
+}
+
+.sonora-organism-spine-cord {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #ffffff 0%, #a855f7 60%, #ffffff 100%);
+  box-shadow: 0 0 12px #ffffff;
+  border-radius: var(--radius-full);
+}
+
+/* =============================================================================
+   8. PROFESSIONAL DJ PERFORMANCE ACCESSORIES (MILESTONE 3.5)
+   ============================================================================= */
+
+/* Audio Telemetry Live Beacon */
+.sonora-audio-telemetry-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.sonora-audio-telemetry-beacon.is-live {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.25);
+}
+
+.sonora-audio-telemetry-beacon.is-suspended {
+  color: #eab308;
+  border-color: rgba(234, 179, 8, 0.5);
+  box-shadow: 0 0 12px rgba(234, 179, 8, 0.35);
+  animation: sonora-beacon-pulse 1.5s infinite alternate;
+}
+
+@keyframes sonora-beacon-pulse {
+  from { opacity: 0.7; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1.02); }
+}
+
+.sonora-beacon-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Jog Wheel Container & Modes */
+.sonora-jog-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--space-3) auto;
+  position: relative;
+}
+
+.sonora-jog-mode-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 190px;
+  margin-bottom: 6px;
+}
+
+.sonora-jog-mode-toggle {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+}
+
+.sonora-jog-mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.sonora-jog-mode-toggle.is-vinyl {
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+.sonora-jog-sublabel {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+}
+
+.sonora-jog-disc {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.3s ease-out;
+  outline: none;
+}
+
+.sonora-jog-disc:focus-visible {
+  outline: 2px solid #00e5ff;
+  outline-offset: 4px;
+}
+
+/* Performance Pads Grid & Bank */
+.sonora-performance-pads-bank {
+  width: 100%;
+  margin-top: var(--space-3);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+.sonora-pad-mode-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+  overflow-x: auto;
+}
+
+.sonora-pad-tab {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-xs);
+  padding: 4px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  white-space: nowrap;
+}
+
+.sonora-pad-tab:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sonora-pad-tab.is-active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+.sonora-pads-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.sonora-perf-pad {
+  aspect-ratio: 1.4;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.12s ease-out;
+  color: var(--color-text-secondary);
+}
+
+.sonora-perf-pad:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.sonora-perf-pad:active {
+  transform: translateY(1px);
+}
+
+.sonora-perf-pad.is-set {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.sonora-perf-pad.is-fx-active {
+  background: rgba(168, 85, 247, 0.25);
+  border-color: #a855f7;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+.sonora-pad-letter {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sonora-pad-meta {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+/* Secondary DJ Control Strips (Pitch, Sync, Quantize, Slip, Loop) */
+.sonora-deck-secondary-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  margin-top: var(--space-2);
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+}
+
+.sonora-pro-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xs);
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+}
+
+.sonora-pro-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.sonora-pro-btn.is-active {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: #00e5ff;
+  color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.sonora-pro-btn.is-active-amber {
+  background: rgba(255, 179, 0, 0.2);
+  border-color: #ffb300;
+  color: #ffb300;
+  box-shadow: 0 0 8px rgba(255, 179, 0, 0.4);
+}
+
+/* Mixer Vertical Channel Fader Strip */
+.sonora-mixer-channels-faders {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  width: 100%;
+  margin-top: var(--space-3);
+  padding: var(--space-2);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+}
+
+.sonora-channel-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.sonora-vertical-fader-wrapper {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonora-vertical-fader {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 6px;
+  height: 80px;
+  cursor: pointer;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+}
+
+.sonora-vertical-fader::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 12px;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  cursor: ns-resize;
+}
+
+/* Headphone Monitoring Section */
+.sonora-headphone-monitoring-bank {
+  width: 100%;
+  margin-top: var(--space-2);
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sonora-pfl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* =============================================================================
+   9. RESPONSIVE COMPOSITION
+   ============================================================================= */
+
+@media (max-width: 980px) {
+  .sonora-env-assembly {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .sonora-env-mixer {
+    order: 2;
+  }
+
+  .is-deck-b {
+    order: 3;
+  }
+}

@@ -1,0 +1,378 @@
+/* ==========================================================================
+   PlayerEnvironment Styling
+   Spatial dark-stage architecture derived from DESIGN_SYSTEM.md
+   ========================================================================== */
+
+.sonora-environment {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-void);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   Ambient Atmospheric Backdrop
+   -------------------------------------------------------------------------- */
+.sonora-atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-atmosphere);
+  background: 
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(124, 77, 255, 0.18), transparent 70%),
+    radial-gradient(circle 500px at 15% 30%, rgba(0, 229, 255, 0.12), transparent 60%),
+    radial-gradient(circle 550px at 85% 65%, rgba(244, 114, 182, 0.12), rgba(124, 77, 255, 0.05) 50%, transparent 75%),
+    radial-gradient(circle 400px at 50% 90%, rgba(255, 179, 0, 0.08), transparent 60%);
+}
+
+/* --------------------------------------------------------------------------
+   Header Anchor Bar
+   -------------------------------------------------------------------------- */
+.sonora-header {
+  position: relative;
+  z-index: var(--z-controls);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 8, 16, 0.65);
+  backdrop-filter: blur(24px);
+}
+
+.sonora-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-aurora-spectral);
+  opacity: 0.6;
+}
+
+.sonora-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sonora-orb-mark {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #00e5ff 0%, #c084fc 50%, #f472b6 100%);
+  box-shadow: 0 0 14px rgba(192, 132, 252, 0.9), 0 0 24px rgba(0, 229, 255, 0.5);
+  animation: sonora-mark-iridescent 4s ease-in-out infinite alternate;
+}
+
+@keyframes sonora-mark-iridescent {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(60deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonora-orb-mark {
+    animation: none;
+  }
+}
+
+.sonora-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+.sonora-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.sonora-status-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   Central Soundstage
+   -------------------------------------------------------------------------- */
+.sonora-stage {
+  position: relative;
+  z-index: var(--z-stage);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--space-4) var(--space-6);
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sonora-stage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 640px;
+}
+
+.sonora-soundstage-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent-iris);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.sonora-stage-title {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.sonora-stage-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-8);
+}
+
+/* --------------------------------------------------------------------------
+   Stage Coordinates Wireframe (Visual Preview of Decks Architecture)
+   -------------------------------------------------------------------------- */
+.sonora-decks-preview {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 980px;
+}
+
+.sonora-deck-slot {
+  background-color: var(--color-surface-base);
+  border: 1px dashed var(--color-surface-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  transition: border-color var(--motion-duration-normal) var(--motion-ease-out);
+}
+
+.sonora-deck-slot:hover {
+  border-color: var(--color-surface-border-active);
+}
+
+.sonora-deck-slot-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.sonora-deck-slot-deck-a .sonora-deck-slot-title {
+  color: var(--color-accent-cyan);
+}
+
+.sonora-deck-slot-deck-b .sonora-deck-slot-title {
+  color: var(--color-accent-amber);
+}
+
+.sonora-deck-slot-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* Deck A Active Ingestion & Acoustic Ribbon Container */
+.sonora-deck-slot-deck-a.has-track {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: var(--space-4);
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-surface-border-active);
+}
+
+.sonora-deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  width: 100%;
+}
+
+.sonora-deck-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  overflow: hidden;
+}
+
+.sonora-deck-track-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.sonora-deck-transport-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sonora-transport-btn {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--color-surface-border);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  transition: all var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-transport-btn:hover {
+  background: rgba(0, 229, 255, 0.15);
+  border-color: var(--color-accent-cyan);
+  color: var(--color-accent-cyan);
+}
+
+/* Ingestion Drop Zone */
+.sonora-ingestion-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+.sonora-ingestion-zone.is-dragover {
+  background-color: rgba(0, 229, 255, 0.08);
+  border: 1px dashed var(--color-accent-cyan);
+}
+
+.sonora-ingestion-input {
+  display: none;
+}
+
+.sonora-ingestion-prompt {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.sonora-ingestion-prompt-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* Ingestion Error Alert */
+.sonora-ingestion-error {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent-crimson);
+  margin-top: var(--space-2);
+  text-align: center;
+}
+
+.sonora-mixer-slot {
+  width: 120px;
+  background-color: var(--color-surface-base);
+  border: 1px dashed var(--color-surface-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sonora-mixer-slot-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   Footer Status Bar
+   -------------------------------------------------------------------------- */
+.sonora-footer {
+  position: relative;
+  z-index: var(--z-controls);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-6);
+  border-top: 1px solid var(--color-surface-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+.sonora-footer-flow {
+  display: flex;
+  gap: var(--space-3);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.sonora-footer-flow-active {
+  color: var(--color-accent-iris);
+  text-shadow: 0 0 8px rgba(124, 77, 255, 0.6);
+  font-weight: 600;
+}
+
+.sonora-footer-arch {
+  letter-spacing: var(--tracking-wide);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Rules
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .sonora-decks-preview {
+    grid-template-columns: 1fr;
+  }
+  
+  .sonora-mixer-slot {
+    width: 100%;
+    min-height: 80px;
+  }
+}

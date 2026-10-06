@@ -1,0 +1,62 @@
+/* ==========================================================================
+   SONORA Stage Environment Styles
+   Authoritative Reference: DESIGN_SYSTEM.md, VISUAL_LANGUAGE.md & MOTION_SYSTEM.md
+   ========================================================================== */
+
+.sonora-stage-container {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 64px - 76px); /* Viewport minus nav and docked player */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* 1. Ambient Spatial Vignette (Static depth amplifier, no duplicate animation) */
+.sonora-stage-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-atmosphere);
+  background: radial-gradient(circle at 50% 30%, rgba(124, 77, 255, 0.04) 0%, transparent 70%);
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+
+/* 2. Main Spatial Content Shell */
+.sonora-stage-body {
+  position: relative;
+  z-index: var(--z-stage);
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Variant Modifiers */
+.sonora-stage-container.is-focal .sonora-stage-body {
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px);
+  padding: var(--space-6);
+}
+
+.sonora-stage-container.is-performance .sonora-stage-body {
+  max-width: 1440px;
+  padding: var(--space-4) var(--space-4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sonora-stage-body {
+    padding: var(--space-4) var(--space-3);
+  }
+  
+  .sonora-stage-container.is-focal .sonora-stage-body {
+    min-height: auto;
+    padding: var(--space-6) var(--space-3);
+  }
+}

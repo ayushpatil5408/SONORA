@@ -1,0 +1,187 @@
+/* ==========================================================================
+   SONORA Application Shell Styles
+   Authoritative Reference: PRD.md Section 10 & 67, DESIGN_SYSTEM.md
+   ========================================================================== */
+
+.sonora-shell {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Living Environmental Atmospheric Backdrop (Multi-Layered Aurora Horizon) */
+.sonora-shell-atmosphere {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-atmosphere);
+  background:
+    radial-gradient(circle at 50% 8%, rgba(124, 77, 255, 0.14) 0%, transparent 60%),
+    radial-gradient(circle at 85% 65%, rgba(0, 229, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 15% 75%, rgba(224, 64, 251, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, rgba(6, 4, 14, 0.98) 0%, var(--void-deep) 70%);
+  transition: all var(--motion-duration-slow) var(--motion-ease-out);
+  overflow: hidden;
+}
+
+/* Secondary Aurora Ribbon Field (Slow Fluid Orbit) */
+.sonora-shell-atmosphere::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 140%;
+  height: 120%;
+  background: radial-gradient(ellipse 65% 50% at 50% 40%, rgba(0, 229, 255, 0.08) 0%, rgba(124, 77, 255, 0.06) 40%, transparent 75%);
+  filter: blur(48px);
+  opacity: 0.85;
+  transform-origin: center center;
+  pointer-events: none;
+}
+
+/* Tertiary Aurora Ribbon Field (Counter Drift & Warm Accents) */
+.sonora-shell-atmosphere::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  right: -20%;
+  width: 130%;
+  height: 110%;
+  background: radial-gradient(ellipse 60% 45% at 55% 55%, rgba(224, 64, 251, 0.07) 0%, rgba(255, 179, 0, 0.05) 35%, transparent 70%);
+  filter: blur(60px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Atmospheric modulation driven by audio engine state */
+.sonora-shell.is-playing.is-deck-a .sonora-shell-atmosphere {
+  background:
+    radial-gradient(circle at 25% 15%, rgba(0, 229, 255, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 50% 25%, rgba(124, 77, 255, 0.15) 0%, transparent 70%),
+    radial-gradient(circle at 85% 75%, rgba(41, 121, 255, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(6, 4, 14, 0.98) 0%, var(--void-deep) 70%);
+}
+
+.sonora-shell.is-playing.is-deck-b .sonora-shell-atmosphere {
+  background:
+    radial-gradient(circle at 75% 15%, rgba(255, 179, 0, 0.2) 0%, transparent 60%),
+    radial-gradient(circle at 50% 25%, rgba(224, 64, 251, 0.16) 0%, transparent 70%),
+    radial-gradient(circle at 15% 75%, rgba(255, 109, 0, 0.1) 0%, transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(6, 4, 14, 0.98) 0%, var(--void-deep) 70%);
+}
+
+.sonora-shell.is-playing.is-dual-playing .sonora-shell-atmosphere {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(255, 179, 0, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 50% 15%, rgba(124, 77, 255, 0.22) 0%, rgba(224, 64, 251, 0.12) 40%, transparent 65%),
+    radial-gradient(circle at 50% 100%, rgba(6, 4, 14, 0.98) 0%, var(--void-deep) 70%);
+}
+
+.sonora-shell.is-playing .sonora-shell-atmosphere::before {
+  opacity: 1;
+  filter: blur(40px);
+}
+
+.sonora-shell.is-playing .sonora-shell-atmosphere::after {
+  opacity: 0.95;
+  filter: blur(50px);
+}
+
+@keyframes sonora-aurora-drift-primary {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  33% {
+    transform: scale(1.05) translate(-14px, 8px);
+  }
+  66% {
+    transform: scale(0.97) translate(10px, -6px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+@keyframes sonora-aurora-drift-secondary {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(6deg) scale(1.08) translate(12px, -8px);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes sonora-aurora-drift-tertiary {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-16px, 12px) scale(1.06);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sonora-shell-atmosphere {
+    animation: sonora-aurora-drift-primary 36s ease-in-out infinite;
+  }
+  .sonora-shell-atmosphere::before {
+    animation: sonora-aurora-drift-secondary 48s ease-in-out infinite;
+  }
+  .sonora-shell-atmosphere::after {
+    animation: sonora-aurora-drift-tertiary 40s ease-in-out infinite;
+  }
+}
+
+/* Main Dynamic Viewport */
+.sonora-shell-main {
+  position: relative;
+  z-index: var(--z-stage);
+  flex: 1;
+  padding-bottom: 108px; /* 72px floating player + 12px bottom offset + 24px clearance */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Route Transition Wrapper */
+.sonora-view-transition-wrap {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sonora-view-transition-wrap {
+    animation: sonora-view-transition var(--route-transition-duration) var(--route-transition-ease);
+  }
+}
+
+@keyframes sonora-view-transition {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sonora-shell-main {
+    padding-bottom: 96px;
+  }
+}
