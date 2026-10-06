@@ -58,9 +58,10 @@ if (!updatedIndexHtml.includes('streamlit:componentReady')) {
 }
 
 // Generate self-contained standalone.html for components.html()
+// Use functions as second argument to String.replace to prevent '$&' / '$1' pattern expansion in minified JS
 let standalone = updatedIndexHtml
-  .replace(/<link rel=\"stylesheet\"[^>]*href=\"[^\"]*\"[^>]*>/, `<style>${cssContent}</style>`)
-  .replace(/<script type=\"module\"[^>]*src=\"[^\"]*\"[^>]*><\/script>/, `<script type=\"module\">${jsContent}</script>`);
+  .replace(/<link rel="stylesheet"[^>]*href="[^"]*"[^>]*>/, () => `<style>${cssContent}</style>`)
+  .replace(/<script type="module"[^>]*src="[^"]*"[^>]*><\/script>/, () => `<script type="module">${jsContent}</script>`);
 
 fs.writeFileSync(path.join(distDir, 'standalone.html'), standalone);
 console.log(`[inline-build] Standalone bundle created: dist/standalone.html (${(fs.statSync(path.join(distDir, 'standalone.html')).size / 1024).toFixed(1)} KB)`);
