@@ -29,5 +29,20 @@
       setTimeout(notifyParentHeight, 500);
       setTimeout(notifyParentHeight, 1500);
     </script>
+  
+    <script>
+      function sendStreamlitReady() {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ isStreamlitMessage: true, type: "streamlit:componentReady", apiVersion: 1 }, "*");
+          window.parent.postMessage({ isStreamlitMessage: true, type: "streamlit:setFrameHeight", height: Math.max(document.documentElement.scrollHeight, 960) }, "*");
+        }
+      }
+      window.addEventListener("load", sendStreamlitReady);
+      window.addEventListener("DOMContentLoaded", sendStreamlitReady);
+      setTimeout(sendStreamlitReady, 50);
+      setTimeout(sendStreamlitReady, 250);
+      setTimeout(sendStreamlitReady, 1000);
+    </script>
+
   </body>
 </html>

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/inline-build.mjs",
     "typecheck": "tsc --noEmit",
     "test:audio": "node scripts/test-audio.mjs",
     "test:waveform": "node scripts/test-waveform.mjs",

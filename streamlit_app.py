@@ -123,19 +123,23 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------------------------
-# 3. Streamlit Component Declaration (Serving Built React SPA)
+# 3. Streamlit Embedded Audiovisual Workstation Loader
 # -----------------------------------------------------------------------------
 DIST_DIR = os.path.join(os.path.dirname(__file__), "dist")
-has_dist = os.path.exists(DIST_DIR) and os.path.exists(os.path.join(DIST_DIR, "index.html"))
+STANDALONE_HTML_PATH = os.path.join(DIST_DIR, "standalone.html")
+INDEX_HTML_PATH = os.path.join(DIST_DIR, "index.html")
 
-if has_dist:
-    # Official Streamlit custom component serving static distribution
-    sonora_app_component = components.declare_component(
-        "sonora_audiovisual_workstation",
-        path=DIST_DIR
-    )
-else:
-    sonora_app_component = None
+def get_workstation_html():
+    """Loads the self-contained production bundle for zero-latency, proxy-safe Streamlit rendering."""
+    if os.path.exists(STANDALONE_HTML_PATH):
+        with open(STANDALONE_HTML_PATH, "r", encoding="utf-8") as f:
+            return f.read()
+    elif os.path.exists(INDEX_HTML_PATH):
+        with open(INDEX_HTML_PATH, "r", encoding="utf-8") as f:
+            return f.read()
+    return None
+
+cached_html = get_workstation_html()
 
 # -----------------------------------------------------------------------------
 # 4. Sidebar Controls & Navigation
@@ -217,9 +221,9 @@ if selected_view == "🎧 Audiovisual Workstation":
     </div>
     """, unsafe_allow_html=True)
 
-    if has_dist and sonora_app_component is not None:
-        # Render the custom component
-        sonora_app_component()
+    if cached_html:
+        # Seamlessly embed the complete self-contained workstation without proxy/component timeouts
+        components.html(cached_html, height=1000, scrolling=True)
     else:
         st.warning(
             "Frontend build not found at `./dist`. If running locally, run `npm run build` to generate the production bundle."
