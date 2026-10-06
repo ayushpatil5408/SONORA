@@ -8,6 +8,7 @@ Discover → Listen → Analyze → Mix → Edit → Create → Share
 
 import os
 import json
+import base64
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -195,7 +196,7 @@ with col_telemetry:
     <div style="text-align:right; font-family:monospace; font-size:0.75rem; color:#94a3b8; padding-top:10px;">
       <div>AUDIO ENGINE: <span style="color:#10b981; font-weight:bold;">READY</span></div>
       <div>WARP DSP: <span style="color:#00e5ff; font-weight:bold;">WSOLA-HQ</span></div>
-      <div>STAGE: <span style="color:#c084fc; font-weight:bold;">ACTIVE</span></div>
+      <div>BUILD: <span style="color:#f59e0b; font-weight:bold;">v0.2-STANDALONE</span></div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -211,19 +212,43 @@ if selected_view == "🎧 Audiovisual Workstation":
         <div>
           <h4 style="margin:0; color:#ffffff; font-weight:700;">Live Interactive Soundstage</h4>
           <p style="margin:0; font-size:0.85rem; color:#94a3b8;">
-            Experience the complete SONORA platform: Two-deck DJ plinths, non-destructive multitrack creator timeline, WSOLA audio warping, and living SoundOrb.
+            Complete SONORA platform: Two-deck DJ plinths, non-destructive multitrack creator timeline, WSOLA audio warping, and living SoundOrb.
           </p>
         </div>
-        <a href="https://github.com/ayushpatil5408/SONORA" target="_blank" style="text-decoration:none;">
-          <span class="sonora-badge sonora-badge-iris">Source Code ↗</span>
-        </a>
+        <div style="display:flex; gap:8px;">
+          <a href="https://github.com/ayushpatil5408/SONORA" target="_blank" style="text-decoration:none;">
+            <span class="sonora-badge sonora-badge-iris">GitHub Repo ↗</span>
+          </a>
+        </div>
       </div>
     </div>
     """, unsafe_allow_html=True)
 
     if cached_html:
-        # Seamlessly embed the complete self-contained workstation without proxy/component timeouts
-        components.html(cached_html, height=1000, scrolling=True)
+        b64_html = base64.b64encode(cached_html.encode('utf-8')).decode('utf-8')
+        data_uri = f"data:text/html;base64,{b64_html}"
+        
+        col_btn1, col_btn2 = st.columns([1, 4])
+        with col_btn1:
+            st.download_button(
+                label="💾 Download Offline App HTML",
+                data=cached_html,
+                file_name="sonora_audiovisual_workstation.html",
+                mime="text/html",
+                help="Download the self-contained SONORA HTML app to run offline anytime in any browser."
+            )
+        with col_btn2:
+            st.markdown(f"""
+            <a href="{data_uri}" target="_blank" style="text-decoration:none;">
+              <button style="background: rgba(0, 229, 255, 0.12); border: 1px solid rgba(0, 229, 255, 0.4); color: #00e5ff; padding: 7px 16px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">
+                ↗ Launch Dedicated Fullscreen Tab
+              </button>
+            </a>
+            """, unsafe_allow_html=True)
+
+        st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
+        # Seamlessly embed the complete self-contained workstation
+        components.html(cached_html, height=1050, scrolling=True)
     else:
         st.warning(
             "Frontend build not found at `./dist`. If running locally, run `npm run build` to generate the production bundle."
